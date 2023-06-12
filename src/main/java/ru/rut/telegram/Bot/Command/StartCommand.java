@@ -43,7 +43,6 @@ public class StartCommand implements BotCommand {
             Employee employee = new Employee(message.getChat().getUserName(), message.getChatId().toString(), false);
             employeeService.create(employee);
             workService.create(employee);
-            regionService.create();
         }
 
         return messageList;

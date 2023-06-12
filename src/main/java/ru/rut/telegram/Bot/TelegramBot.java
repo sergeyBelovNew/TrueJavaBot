@@ -29,7 +29,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private final RegionOkCommand regionOkCommand;
     private final RegionNotOkCommand regionNotOkCommand;
     private final EndWorkCommand endWorkCommand;
-    private final MyWorkRegionsCommand myWorkRegionsCommand;
+    private final AllRegionsCommand allRegionsCommand;
     private final Help runHelp;
 
     @Autowired
@@ -43,7 +43,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                        RegionOkCommand regionOkCommand,
                        RegionNotOkCommand regionNotOkCommand,
                        EndWorkCommand endWorkCommand,
-                       MyWorkRegionsCommand myWorkRegionsCommand,
+                       AllRegionsCommand allRegionsCommand,
                        Help runHelp
 
     ) throws TelegramApiException {
@@ -56,7 +56,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         this.regionOkCommand = regionOkCommand;
         this.regionNotOkCommand = regionNotOkCommand;
         this.endWorkCommand = endWorkCommand;
-        this.myWorkRegionsCommand = myWorkRegionsCommand;
+        this.allRegionsCommand = allRegionsCommand;
         this.runHelp = runHelp;
         telegramBotsApi.registerBot(this);
     }
@@ -98,8 +98,8 @@ public class TelegramBot extends TelegramLongPollingBot {
                     }
                 }
                 break;
-            case "/my_work_regions":
-                List<SendMessage> sendMessage2 = myWorkRegionsCommand.runCommand(message);
+            case "/all_regions":
+                List<SendMessage> sendMessage2 = allRegionsCommand.runCommand(message);
                 for (SendMessage message1 : sendMessage2) {
                     try {
                         execute(message1);
